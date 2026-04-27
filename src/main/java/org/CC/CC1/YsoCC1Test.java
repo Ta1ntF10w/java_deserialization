@@ -58,8 +58,4 @@ public class YsoCC1Test {
         oos.writeObject(obj);
     }
 
-    public static void deSerialize() throws Exception {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("ser.bin"));
-        ois.readObject();
-    }
 }
