@@ -24,6 +24,23 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Gadget chain:
+ * 		ObjectInputStream.readObject()
+ * 			AnnotationInvocationHandler.readObject()
+ * 				Map(Proxy).entrySet()
+ * 					AnnotationInvocationHandler.invoke()
+ * 						MapEntry.setValue()
+ * 					      TransformedMap.checkSetValue()
+ * 							ChainedTransformer.transform()
+ *  * 								ConstantTransformer.transform()
+ *  * 								InstantiateTransformer.transform()
+ *  * 							       TrAXFilter.init()
+ *  * 									    TemplatesImpl.newTransformer()
+ *  * 									    	TemplatesImpl.getTransletInstance()
+ *  * 								                Class.newInstance()
+ */
+
 public class YsoCC3Test {
     public static void main(String[] args) throws TransformerConfigurationException, NoSuchFieldException, IllegalAccessException, IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException {
 

